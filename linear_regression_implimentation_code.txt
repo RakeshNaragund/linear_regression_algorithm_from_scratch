@@ -1,0 +1,40 @@
+# Online Python compiler (interpreter) to run Python online.
+# Write Python 3 code in this online editor and run it.
+
+# Online Python compiler (interpreter) to run Python online.
+# Write Python 3 code in this online editor and run it.
+import pandas as pd
+import numpy as np
+
+
+class MyLR():
+    def __init__(self):
+        self.m=None
+        self.b=None
+        
+    def fit(self,X_train,y_train):
+        
+        num=0
+        den=0
+        for i in range(X_train.shape[0]):
+            num=(num+(X_train[i]-X_train.mean())*(y_train[i]-y_train.mean()))
+            den=(den+((X_train[i]-X_train.mean())*(X_train[i]-X_train.mean())))
+        self.m=num/den
+        self.b=(y_train.mean()-(self.m*X_train.mean()))
+            
+    
+    def predict(self,X_test):
+        return self.m*X_test+self.b
+        
+        
+lr=MyLR()
+lr.fit(X_train,y_train)
+lr.predict(X_test)
+
+data={'cgpa':[8.5,8.1,8.2,9.1,7.5,7.8,7.5,8.8,6.5,6.1,6.8,7.0],'Package':[8,6.5,5.4,4.8,8.3,7.5,6.5,6.6,7.0,5.6,6.5,7.2]}
+df=pd.DataFrame(data)
+X=df.iloc[:,0].values
+y=df.iloc[:,1].values
+from sklearn.model_selection import train_test_split
+X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.2,random_state=2)
+NotebookApp.browser="C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" %s'
